@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "Executing Pre-API Helpers"
+echo "Executing Account-Specific Pre-API Helpers"
