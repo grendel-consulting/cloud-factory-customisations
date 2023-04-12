@@ -3,6 +3,9 @@
     "extends": [
       "config:base", "schedule:nonOfficeHours"
     ],
+    "pre-commit": {
+      "enabled": true
+    },
     "timezone": "Europe/London",
     "vulnerabilityAlerts": {
       "labels": ["security"],
