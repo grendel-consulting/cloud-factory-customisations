@@ -3,7 +3,7 @@
 
 {% if tf_distribution_type == "oss" -%}
 terraform {
-  required_version = "1.4.4"
+  required_version = "1.4.5"
   backend "s3" {
     region         = "{{ region }}"
     bucket         = "{{ bucket }}"
