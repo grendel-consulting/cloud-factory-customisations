@@ -1,12 +1,12 @@
 locals {
-  tlds = toset([
-    "comorian.io",
-    "grendel.consulting",
-    "grendel-consulting.com",
-    "grendel-realms.com",
-    "khaen.com",
-    "khaen.net",
-    "risen.world",
-    "onibi.co.uk"
-  ])
+  tlds = {
+    "comorian.io" : { "email" : "parked" },
+    "grendel-consulting.com" : { "email" : "workspace" },
+    "grendel-realms.com" : { "email" : "parked" },
+    "grendel.consulting" : { "email" : "workspace" },
+    "khaen.com" : { "email" : "workspace" },
+    "khaen.net" : { "email" : "parked" },
+    "onibi.co.uk" : { "email" : "workspace" },
+    "risen.world" : { "email" : "parked" }
+  }
 }

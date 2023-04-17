@@ -7,3 +7,13 @@ resource "aws_route53_zone" "registered" {
     environment = "production"
   }
 }
+
+module "parked" {
+  for_each = { for k, v in local.tlds : k => v if v.email == "parked" }
+
+  source = "./modules/parked"
+
+  domain    = each.key
+  zone_id   = aws_route53_zone.registered[each.key].zone_id
+  rua_email = "dmarc@hrothgar.uriports.com"
+}
