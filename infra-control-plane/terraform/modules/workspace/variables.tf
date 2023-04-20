@@ -31,7 +31,7 @@ variable "consolidated_mx" {
 }
 
 variable "domain_key" {
-  type        = string
+  type        = list(string)
   description = "Domain key to use for DKIM"
   default     = null
 }
