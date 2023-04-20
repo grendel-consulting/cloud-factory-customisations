@@ -22,7 +22,7 @@ resource "aws_route53_record" "dkim" {
   for_each = var.domain_key == null ? {} : { "google" = var.domain_key }
   zone_id  = data.aws_route53_zone.existing.zone_id
   name     = "${each.key}._domainkey.${var.domain}"
-  records  = ["v=DKIM1; k=rsa; p=${each.value}"]
+  records  = concat(["v=DKIM1; k=rsa; p="], each.value)
   type     = "TXT"
   ttl      = local.ttl.five_minutes # local.ttl.forty_eight_hours
 }
