@@ -30,5 +30,4 @@ module "parked" {
   domain    = each.key
   zone_id   = aws_route53_zone.registered[each.key].zone_id
   rua_email = "dmarc@hrothgar.uriports.com"
-  ruf_email = "dmarc@hrothgar.uriports.com"
 }
