@@ -10,7 +10,12 @@ variable "zone_id" {
 
 variable "rua_email" {
   type        = string
-  description = "Email address to send DMARC reports to"
+  description = "Email address to send DMARC aggregate reports to"
+}
+
+variable "ruf_email" {
+  type        = string
+  description = "Email address to send DMARC failure reports to"
 }
 
 locals {
@@ -24,7 +29,7 @@ locals {
     "spf_on_subdomains" = { on = "*.${var.domain}", type = "TXT", records = ["v=spf1 -all"] },
     "mx_on_apex"        = { on = var.domain, type = "MX", records = ["0 ."] },
     "mx_on_subdomains"  = { on = "*.${var.domain}", type = "MX", records = ["0 ."] },
-    "dmarc"             = { on = "_dmarc.${var.domain}", type = "TXT", records = ["v=DMARC1; p=reject; rua=maillto:${var.rua_email}"] }
+    "dmarc"             = { on = "_dmarc.${var.domain}", type = "TXT", records = ["v=DMARC1; p=reject; rua=maillto:${var.rua_email}; ruf=maillto:${var.ruf_email}"] }
     # No SOA record, because this is maintained by AWS, including reporting
   }
 }
