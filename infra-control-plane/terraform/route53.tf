@@ -9,7 +9,7 @@ resource "aws_route53_zone" "registered" {
 }
 
 module "workspace" {
-  for_each = { for k, v in local.tlds : k => v if v.email != "workspace" }
+  for_each = { for k, v in local.tlds : k => v if v.email == "workspace" }
 
   source = "./modules/workspace"
 
