@@ -13,7 +13,7 @@ resource "aws_route53_record" "txt_on_apex" {
 resource "aws_route53_record" "mx_on_apex" {
   zone_id = data.aws_route53_zone.existing.zone_id
   name    = var.domain
-  records = var.consolidated_mx ? local.pre_2023_mx_records : local.post_2023_mx_records
+  records = var.consolidated_mx ? local.post_2023_mx_records : local.pre_2023_mx_records
   type    = "MX"
   ttl     = local.ttl.five_minutes
 }
