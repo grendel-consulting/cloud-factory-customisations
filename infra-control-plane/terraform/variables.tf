@@ -6,7 +6,10 @@ locals {
       "domain_key" : ["MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCGISnYSs6/CPxxQcoMZE6XTim5q9eLlbvBLSvHe49ep/WMWnfm1gmHfhzCmdVVNZNeZ7p5pnZrehQsDpmkvT4020K6E0gcPp7gDBPWpbSfwteXfiL5VqPwhuukB/3eMpUMbJwb9t0eRC+D6GMaNOuhQ+HefgLnmWHUWFGdgDSmZQIDAQAB"] # pragma: allowlist secret
     },
     "grendel-realms.com" : { "email" : "parked" },
-    "grendel.consulting" : { "email" : "workspace" },
+    "grendel.consulting" : {
+      "email" : "workspace",
+      "verification_token" : "A8-C3FqhsmJJenvUj3HrauVI4yFpVS9Xeh8oy7GrutU" # pragma: allowlist secret
+    },
     "khaen.com" : { "email" : "workspace" },
     "khaen.net" : { "email" : "parked" },
     "onibi.co.uk" : {
