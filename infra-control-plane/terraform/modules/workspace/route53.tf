@@ -30,7 +30,7 @@ resource "aws_route53_record" "dkim" {
 resource "aws_route53_record" "dmarc" {
   zone_id = data.aws_route53_zone.existing.zone_id
   name    = "_dmarc.${var.domain}"
-  records = ["v=DMARC1; p=quarantine; rua=maillto:${var.rua_email}; ruf=maillto:${var.ruf_email}; fo=1:d:s"]
+  records = ["v=DMARC1; p=quarantine; rua=maillto:${var.rua_email}; ruf=mailto:${var.ruf_email}; fo=1:d:s"]
   type    = "TXT"
   ttl     = local.ttl.five_minutes # local.ttl.one_hour
 }
