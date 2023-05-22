@@ -1,0 +1,102 @@
+name: review
+
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2.4.0
+        with:
+          egress-policy: audit
+
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Teraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Prettify
+        run: terraform fmt -check
+        continue-on-error: true
+
+      - name: Initialise
+        run: terraform init
+
+      - name: Validate
+        run: terraform validate -no-color
+
+  tflint:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2.4.0
+        with:
+          egress-policy: audit
+
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Cache Plugins
+        uses: actions/cache@v3
+        with:
+          path: ~/.tflint.d/plugins
+          key: tflint-${{ hashFiles('.tflint.hcl') }}
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v3
+        with:
+          tflint_version: v0.46.1
+
+      - name: Initialise
+        run: tflint --init
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Lint
+        run: tflint -f compact
+
+  tfsec:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    env:
+      tfsec_sarif: tfsec.sarif
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@v2.4.0
+        with:
+          egress-policy: audit
+
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Run with SARIF Output
+        uses: tfsec/tfsec-sarif-action@v0.1.4
+        with:
+          sarif_file: ${{ env.tfsec_sarif }}
+
+      - name: Report via GitHub CodeQL
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file:  ${{ env.tfsec_sarif }}
