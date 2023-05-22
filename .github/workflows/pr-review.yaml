@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-env:
-  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -26,8 +23,6 @@ jobs:
 
       - name: Setup Teraform
         uses: hashicorp/setup-terraform@v2
-        with:
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Prettify
         run: terraform fmt -check
