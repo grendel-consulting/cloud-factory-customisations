@@ -1,8 +1,8 @@
 locals {
   github_owner = "grendel-consulting"
   repositories = {
-    "website" = {
-      github_repo = "www.grendel-consuling.com"
+    "grendel-consulting_com" = {
+      github_repo = "www.grendel-consulting.com"
     }
   }
 }
