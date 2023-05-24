@@ -3,13 +3,13 @@ variable "name" {
   description = "Name of the pipeline"
 
   validation {
-    condition     = can(regex("^[A-Za-z0-9_-]+$", var.name))
-    error_message = "Name must match A-Za-z0-9_-"
+    condition     = can(regex("^[a-z0-9-]+$", var.name))
+    error_message = "Name must match a-z0-9-"
   }
 
   validation {
     condition     = (length(var.name) < 33)
-    error_message = "Limit the Name to 32 characters to S3 bucket limits."
+    error_message = "Limit to 32 characters because of CodeStar and S3 constraints."
   }
 }
 variable "github_owner" {
@@ -26,6 +26,11 @@ variable "github_target_branch" {
   type        = string
   description = "Branch to use as the source"
   default     = "main"
+}
+
+variable "connection" {
+  type        = string
+  description = "ARN of the CodeStar Connection"
 }
 
 locals {

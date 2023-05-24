@@ -18,7 +18,7 @@ resource "aws_codebuild_project" "build" {
     image_pull_credentials_type = "CODEBUILD"
   }
   source {
-    type            = "GITHUB"
+    type            = "CODEPIPELINE"
     git_clone_depth = 0 # Full Clone
   }
 }
