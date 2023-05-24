@@ -1,4 +1,14 @@
 locals {
+  github_owner = "grendel-consulting"
+
+  # Repositories, in an S3 friendly format, for their pipelines
+  repositories = {
+    "grendel-consulting-com" = {
+      github_repo = "www.grendel-consulting.com"
+    }
+  }
+
+  # Domain names, in a DNS friendly format
   tlds = {
     "comorian.io" : { "email" : "parked" },
     "grendel-consulting.com" : {
