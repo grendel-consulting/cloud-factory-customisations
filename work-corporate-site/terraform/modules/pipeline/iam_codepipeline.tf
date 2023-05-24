@@ -25,7 +25,7 @@ data "aws_iam_policy_document" "pipeline_policy" {
   statement {
     effect    = "Allow"
     actions   = ["codestar-connections:UseConnection"]
-    resources = [aws_codestarconnections_connection.pipeline.arn]
+    resources = [var.connection]
   }
 
   statement {
