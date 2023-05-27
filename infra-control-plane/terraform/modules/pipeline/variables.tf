@@ -35,9 +35,12 @@ variable "connection" {
 
 locals {
   prefix                    = "g6c-${var.name}"
-  source_output             = "${local.prefix}-source-output"
-  build_output              = "${local.prefix}-build-output"
+  build_image               = "aws/codebuild/standard:7.0"
+  source_output             = "source-output"
+  build_output              = "build-output"
   build_project             = "${local.prefix}-build"
+  stage_output              = "stage-output"
+  stage_project             = "${local.prefix}-stage"
   expiration_window_in_days = 30
   timeout_in_minutes        = 15
 }
