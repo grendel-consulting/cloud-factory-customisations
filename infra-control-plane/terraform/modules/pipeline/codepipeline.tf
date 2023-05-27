@@ -36,7 +36,7 @@ resource "aws_codepipeline" "codepipeline" {
     name = "Build"
 
     action {
-      name             = "Build"
+      name             = "Build and Synth"
       category         = "Build"
       owner            = "AWS"
       provider         = "CodeBuild"
@@ -46,6 +46,24 @@ resource "aws_codepipeline" "codepipeline" {
 
       configuration = {
         ProjectName = local.build_project
+      }
+    }
+  }
+
+  stage {
+    name = "Staging"
+
+    action {
+      name             = "Deploy Staging"
+      category         = "Build"
+      owner            = "AWS"
+      provider         = "CodeBuild"
+      input_artifacts  = [local.build_output]
+      output_artifacts = [local.stage_output]
+      version          = "1"
+
+      configuration = {
+        ProjectName = local.stage_project
       }
     }
   }
