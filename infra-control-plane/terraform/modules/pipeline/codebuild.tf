@@ -1,6 +1,6 @@
 resource "aws_codebuild_project" "build" {
   name          = local.build_project
-  description   = "Build ${local.build_project}"
+  description   = "Build and Synth ${local.build_project}"
   build_timeout = local.timeout_in_minutes
   service_role  = aws_iam_role.build.arn
 
@@ -26,7 +26,7 @@ resource "aws_codebuild_project" "build" {
 
 resource "aws_codebuild_project" "stage" {
   name          = local.stage_project
-  description   = "Build ${local.stage_project}"
+  description   = "Deploy ${local.stage_project}"
   build_timeout = local.timeout_in_minutes
   service_role  = aws_iam_role.build.arn
 
