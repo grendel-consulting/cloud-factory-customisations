@@ -36,7 +36,7 @@ resource "aws_codepipeline" "codepipeline" {
     name = "Build"
 
     action {
-      name             = "Build and Synth"
+      name             = "Build_And_Synth"
       category         = "Build"
       owner            = "AWS"
       provider         = "CodeBuild"
@@ -54,7 +54,7 @@ resource "aws_codepipeline" "codepipeline" {
     name = "Staging"
 
     action {
-      name             = "Deploy Staging"
+      name             = "Deploy_Staging"
       category         = "Build"
       owner            = "AWS"
       provider         = "CodeBuild"
