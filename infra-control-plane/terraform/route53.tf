@@ -40,5 +40,5 @@ resource "aws_route53_record" "github" {
   type    = "TXT"
   ttl     = local.ttl.five_minutes
 
-  records = each.value.token
+  records = [each.value.token]
 }
