@@ -13,7 +13,8 @@ locals {
     "comorian.io" : { "email" : "parked" },
     "grendel-consulting.com" : {
       "email" : "workspace",
-      "domain_key" : ["MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCGISnYSs6/CPxxQcoMZE6XTim5q9eLlbvBLSvHe49ep/WMWnfm1gmHfhzCmdVVNZNeZ7p5pnZrehQsDpmkvT4020K6E0gcPp7gDBPWpbSfwteXfiL5VqPwhuukB/3eMpUMbJwb9t0eRC+D6GMaNOuhQ+HefgLnmWHUWFGdgDSmZQIDAQAB"] # pragma: allowlist secret
+      "domain_key" : ["MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCGISnYSs6/CPxxQcoMZE6XTim5q9eLlbvBLSvHe49ep/WMWnfm1gmHfhzCmdVVNZNeZ7p5pnZrehQsDpmkvT4020K6E0gcPp7gDBPWpbSfwteXfiL5VqPwhuukB/3eMpUMbJwb9t0eRC+D6GMaNOuhQ+HefgLnmWHUWFGdgDSmZQIDAQAB"], # pragma: allowlist secret
+      "github" : { "owner" : local.github_owner, "token" : "4988aa2e40" }                                                                                                                                                                          # pragma: allowlist secret
     },
     "grendel-realms.com" : { "email" : "parked" },
     "grendel.consulting" : {
@@ -28,5 +29,12 @@ locals {
       "verification_token" : "oaWXQ40qVrrOSkcW7BV1vhtkpkBV_a_zbx2EqI1-pKs"                                                                                                                                                                                                                                                                                                                                                             # pragma: allowlist secret
     },
     "risen.world" : { "email" : "parked" }
+  }
+
+  ttl = {
+    "forty_eight_hours" = 172800,
+    "twenty_four_hours" = 86400,
+    "one_hour"          = 3600,
+    "five_minutes"      = 300
   }
 }

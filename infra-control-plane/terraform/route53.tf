@@ -31,3 +31,14 @@ module "parked" {
   zone_id   = aws_route53_zone.registered[each.key].zone_id
   rua_email = "dmarc@hrothgar.uriports.com"
 }
+
+resource "aws_route53_record" "github" {
+  for_each = { for k, v in local.tlds : k => v.github if try(v.github, null) != null }
+
+  zone_id = aws_route53_zone.registered[each.key].zone_id
+  name    = "_github-challenge-${each.value.owner}"
+  type    = "TXT"
+  ttl     = local.ttl.five_minutes
+
+  records = each.value.token
+}
