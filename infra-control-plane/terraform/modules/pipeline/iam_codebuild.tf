@@ -32,6 +32,17 @@ data "aws_iam_policy_document" "build_policy" {
     effect = "Allow"
 
     actions = [
+      "ssm:GetParameter",
+      "ssm:GetParameters",
+    ]
+
+    resources = [var.tfc_token]
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
       "logs:CreateLogGroup",
       "logs:CreateLogStream",
       "logs:PutLogEvents",
