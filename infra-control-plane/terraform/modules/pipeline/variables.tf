@@ -33,6 +33,11 @@ variable "connection" {
   description = "ARN of the CodeStar Connection"
 }
 
+variable "tfc_token" {
+  type        = string
+  description = "ARN of the SSM Parameter containing the Terraform Cloud token"
+}
+
 locals {
   prefix                    = "g6c-${var.name}"
   build_image               = "aws/codebuild/standard:7.0"
