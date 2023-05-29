@@ -23,4 +23,5 @@ module "pipelines" {
   github_repo  = each.value.github_repo
   connection   = aws_codestarconnections_connection.github.arn
   tfc_token    = aws_ssm_parameter.tfc_token.arn
+  workload     = each.value.workload
 }

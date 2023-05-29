@@ -38,10 +38,9 @@ variable "tfc_token" {
   description = "ARN of the SSM Parameter containing the Terraform Cloud token"
 }
 
-variable "targets" {
-  type        = list(string)
-  description = "List of AWS Account IDs to deploy to"
-  default     = []
+variable "workload" {
+  type        = string
+  description = "Named key for workloads to target"
 }
 
 locals {

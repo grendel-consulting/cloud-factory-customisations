@@ -5,19 +5,19 @@ resource "aws_iam_role" "build" {
 
 # tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "build_policy" {
-  dynamic "statement" {
-    for_each = length(var.targets) > 0 ? { "k" : "v" } : {}
+  statement {
+    effect = "Allow"
 
-    content {
-      effect = "Allow"
+    actions = [
+      "sts:AssumeRole",
+    ]
 
-      actions = [
-        "sts:AssumeRole",
-      ]
-
-      resources = [for s in var.targets : "arn:aws:iam::${s}:role/tfc-role"]
-    }
+    resources = [
+      "arn:aws:iam::${aws_ssm_parameter.staging.value}:role/tfc-role",
+      "arn:aws:iam::${aws_ssm_parameter.production.value}:role/tfc-role"
+    ]
   }
+
 
   statement {
     effect = "Allow"
@@ -50,7 +50,11 @@ data "aws_iam_policy_document" "build_policy" {
       "ssm:GetParameters",
     ]
 
-    resources = [var.tfc_token]
+    resources = [
+      var.tfc_token,
+      aws_ssm_parameter.staging.arn,
+      aws_ssm_parameter.production.arn,
+    ]
   }
 
   statement {
