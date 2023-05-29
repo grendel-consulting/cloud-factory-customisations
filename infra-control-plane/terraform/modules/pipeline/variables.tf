@@ -38,6 +38,12 @@ variable "tfc_token" {
   description = "ARN of the SSM Parameter containing the Terraform Cloud token"
 }
 
+variable "targets" {
+  type        = list(string)
+  description = "List of AWS Account IDs to deploy to"
+  default     = []
+}
+
 locals {
   prefix                    = "g6c-${var.name}"
   build_image               = "aws/codebuild/standard:7.0"
