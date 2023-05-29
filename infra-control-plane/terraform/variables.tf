@@ -1,5 +1,9 @@
 locals {
-  github_owner = "grendel-consulting"
+  github_owner          = "grendel-consulting"
+  tfc_hostname          = "app.terraform.io"
+  tfc_organisation_name = "grendel-consulting"
+  tfc_project_name      = "Default Project"
+  tfc_aws_audience      = "aws.workload.identity"
 
   # Repositories, in an S3 friendly format, for their pipelines
   repositories = {
