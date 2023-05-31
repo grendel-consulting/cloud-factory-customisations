@@ -11,6 +11,14 @@ locals {
       github_repo = "www.grendel-consulting.com"
       workload    = "corporate-site"
     }
+    "onibi-co-uk" = {
+      github_repo = "www.onibi.co.uk"
+      workload    = "onibi-site"
+    }
+    "caretaker-onibi-co-uk" = {
+      github_repo = "caretaker.onibi.co.uk"
+      workload    = "caretaker-saas"
+    }
   }
 
   # Domain names, in a DNS friendly format
