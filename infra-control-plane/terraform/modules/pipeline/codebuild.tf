@@ -49,3 +49,29 @@ resource "aws_codebuild_project" "stage" {
     git_clone_depth = 0 # Full Clone
   }
 }
+
+resource "aws_codebuild_project" "production" {
+  name          = local.production_project
+  description   = "Deploy ${local.production_project}"
+  build_timeout = local.timeout_in_minutes
+  service_role  = aws_iam_role.build.arn
+
+  artifacts {
+    type = "CODEPIPELINE"
+    name = local.production_output
+  }
+
+  encryption_key = aws_kms_key.artefacts.arn
+
+  environment {
+    compute_type                = "BUILD_GENERAL1_SMALL"
+    image                       = local.build_image
+    type                        = "LINUX_CONTAINER"
+    image_pull_credentials_type = "CODEBUILD"
+  }
+  source {
+    type            = "CODEPIPELINE"
+    buildspec       = "pipelines/production.yml"
+    git_clone_depth = 0 # Full Clone
+  }
+}
