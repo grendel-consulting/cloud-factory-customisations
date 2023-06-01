@@ -51,6 +51,8 @@ locals {
   build_project             = "${local.prefix}-build"
   stage_output              = "stage-output"
   stage_project             = "${local.prefix}-stage"
+  production_output         = "prod-output"
+  production_project        = "${local.prefix}-prod"
   expiration_window_in_days = 30
   timeout_in_minutes        = 15
 }
