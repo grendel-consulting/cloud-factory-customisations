@@ -22,6 +22,12 @@ resource "aws_codebuild_project" "build" {
     buildspec       = "pipelines/build.yml"
     git_clone_depth = 0 # Full Clone
   }
+
+  logs_config {
+    cloudwatch_logs {
+      group_name = aws_cloudwatch_log_group.build.name
+    }
+  }
 }
 
 resource "aws_codebuild_project" "stage" {
@@ -48,6 +54,12 @@ resource "aws_codebuild_project" "stage" {
     buildspec       = "pipelines/stage.yml"
     git_clone_depth = 0 # Full Clone
   }
+
+  logs_config {
+    cloudwatch_logs {
+      group_name = aws_cloudwatch_log_group.stage.name
+    }
+  }
 }
 
 resource "aws_codebuild_project" "production" {
@@ -73,5 +85,11 @@ resource "aws_codebuild_project" "production" {
     type            = "CODEPIPELINE"
     buildspec       = "pipelines/production.yml"
     git_clone_depth = 0 # Full Clone
+  }
+
+  logs_config {
+    cloudwatch_logs {
+      group_name = aws_cloudwatch_log_group.production.name
+    }
   }
 }
