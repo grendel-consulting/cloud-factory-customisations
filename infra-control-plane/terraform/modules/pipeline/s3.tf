@@ -11,7 +11,7 @@ resource "aws_s3_bucket" "artefacts" {
   # We can omit public access block and acl configuration
 
   tags = {
-    Environment = "Production"
+    Environment = "Prod"
   }
 }
 
