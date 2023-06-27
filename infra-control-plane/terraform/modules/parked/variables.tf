@@ -13,6 +13,11 @@ variable "rua_email" {
   description = "Email address to send DMARC aggregate reports to"
 }
 
+variable "caa_email" {
+  type        = string
+  description = "Email address to send CAA violation reports to"
+}
+
 locals {
   ttl = {
     "forty_eight_hours" = 172800
@@ -26,5 +31,6 @@ locals {
     "mx_on_subdomains"  = { on = "*.${var.domain}", type = "MX", records = ["0 ."] },
     "dmarc"             = { on = "_dmarc.${var.domain}", type = "TXT", records = ["v=DMARC1; p=reject; rua=mailto:${var.rua_email}"] }
     # No SOA record, because this is maintained by AWS, including reporting
+    "caa" = { on = var.domain, type = "CAA", records = ["0 issue \";\"", "0 issuewild \";\"", "0 iodef \"mailto:${var.caa_email}\""] }
   }
 }
