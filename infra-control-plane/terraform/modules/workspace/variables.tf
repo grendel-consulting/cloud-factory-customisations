@@ -23,6 +23,12 @@ variable "tls_email" {
   description = "Email address to send TLS reports to"
 }
 
+variable "caa_email" {
+  type        = string
+  description = "Email address to send CAA violation reports to"
+  default     = null
+}
+
 variable "consolidated_mx" {
   type        = bool
   description = "Whether to use consolidated MX records, i.e. if signed up for Google Workspace after 2023, or not"
@@ -60,4 +66,13 @@ locals {
   post_2023_mx_records = [
     "1 SMTP.GOOGLE.COM"
   ]
+
+  caa_issuers = [
+    "amazon.com",
+    "amazontrust.com",
+    "awstrust.com",
+    "amazonaws.com"
+  ]
+
+  caa_report_recipient = var.caa_email != null ? var.caa_email : format("hostmaster@%s", var.domain)
 }

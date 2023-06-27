@@ -18,6 +18,7 @@ module "workspace" {
   rua_email          = "dmarc@hrothgar.uriports.com"
   ruf_email          = "dmarc@hrothgar.uriports.com"
   tls_email          = "tlsrpt@hrothgar.uriports.com"
+  caa_email          = "security@grendel-consulting.com"
   domain_key         = try(each.value.domain_key, null)
   verification_token = try(each.value.verification_token, null)
 }
@@ -30,6 +31,7 @@ module "parked" {
   domain    = each.key
   zone_id   = aws_route53_zone.registered[each.key].zone_id
   rua_email = "dmarc@hrothgar.uriports.com"
+  caa_email = "security@grendel-consulting.com"
 }
 
 resource "aws_route53_record" "github" {
