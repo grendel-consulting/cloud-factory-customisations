@@ -3,7 +3,7 @@ resource "aws_iam_role" "pipeline" {
   assume_role_policy = data.aws_iam_policy_document.pipeline_assume_role.json
 }
 
-# tfsec:ignore:aws-iam-no-policy-wildcards
+# trivy:ignore:AVD-AWS-0057 - IAM Policy Document Uses Wildcarded Action
 data "aws_iam_policy_document" "pipeline_policy" {
   statement {
     effect = "Allow"
