@@ -54,5 +54,5 @@ resource "aws_route53_record" "caa" {
     ]
   )
   type = "CAA"
-  ttl  = local.ttl.five_minutes # local.ttl.forty_eight_hours
+  ttl  = local.ttl.forty_eight_hours
 }
