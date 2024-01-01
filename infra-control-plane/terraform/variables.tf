@@ -26,6 +26,7 @@ locals {
     "comorian.io" : { "email" : "parked" },
     "grendel-consulting.com" : {
       "email" : "workspace",
+      "verification_token" : "rbHbpKg-qg7k_eB0w2rbLXOlYUxu_39EchFOThhmYs0",                                                                                                                                                                        # pragma: allowlist secret
       "domain_key" : ["MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCGISnYSs6/CPxxQcoMZE6XTim5q9eLlbvBLSvHe49ep/WMWnfm1gmHfhzCmdVVNZNeZ7p5pnZrehQsDpmkvT4020K6E0gcPp7gDBPWpbSfwteXfiL5VqPwhuukB/3eMpUMbJwb9t0eRC+D6GMaNOuhQ+HefgLnmWHUWFGdgDSmZQIDAQAB"], # pragma: allowlist secret
       "github" : { "owner" : local.github_owner, "token" : "4988aa2e40" }                                                                                                                                                                          # pragma: allowlist secret
     },
