@@ -5,12 +5,12 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
 
     steps:
       - name: Harden Runner
@@ -38,9 +38,6 @@ jobs:
 
   tflint:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
 
     steps:
       - name: Harden Runner
@@ -74,9 +71,6 @@ jobs:
 
   trivy:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
 
     env:
       trivy_sarif: trivy.sarif
