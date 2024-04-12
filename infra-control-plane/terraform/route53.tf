@@ -44,3 +44,14 @@ resource "aws_route53_record" "github" {
 
   records = [each.value.response]
 }
+
+resource "aws_route53_record" "status" {
+  for_each = { for k, v in local.tlds : k => v if try(v.status, null) != null }
+
+  zone_id = aws_route53_zone.registered[each.key].zone_id
+  name    = "status.${each.key}"
+  type    = "CNAME"
+  ttl     = local.ttl.five_minutes
+
+  records = [each.value.status]
+}

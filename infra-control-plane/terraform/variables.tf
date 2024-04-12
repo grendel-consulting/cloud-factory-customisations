@@ -33,7 +33,8 @@ locals {
       "github" : {
         (local.github_owner) : { "token" : "4988aa2e40" },    # pragma: allowlist secret
         (local.github_secondary) : { "token" : "08a22ee31c" } # pragma: allowlist secret
-      }
+      },
+      "status" : "incident.io"
     },
     "grendel-realms.com" : { "email" : "parked" },
     "grendel.consulting" : {
