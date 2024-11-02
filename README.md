@@ -1,4 +1,6 @@
 # Cloud Factory (Account) Customisations
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/grendel-consulting/cloud-factory-customisations/badge)](https://scorecard.dev/viewer/?uri=github.com/grendel-consulting/cloud-factory-customisations)
+
 
 Definitions for use with the Account Factory for Terraform (AFT) framework. Account Customizations are used to customize **specific** provisioned accounts with customer defined resources. The resources can be created through Terraform or through Python, leveraging the API helpers. The customization run is parameterized at runtime.
 
