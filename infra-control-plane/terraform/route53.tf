@@ -27,7 +27,7 @@ module "parked" {
   for_each = { for k, v in local.tlds : k => v if v.email == "parked" }
 
   source  = "grendel-consulting/securely_parked_domain/aws"
-  version = "0.1.0"
+  version = "0.1.1"
 
   domain    = each.key
   zone_id   = aws_route53_zone.registered[each.key].zone_id
